@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 
 /* 
 1. Fetching the data for 1 project
@@ -9,6 +9,17 @@ import { Link, useParams } from 'react-router-dom'
 function ProjectDetailsPage() {
     const [project,setProject] = useState(null)
     const {id} = useParams()
+    const navigate = useNavigate()
+
+    function deleteProject(){
+        axios.delete(`http://localhost:5005/api/projects/${id}`)
+        .then(()=>{
+            navigate('/projects')
+        }).
+        catch(err=>{
+            console.log(err)
+        })
+    }
 
     useEffect(()=>{
         axios.get(`http://localhost:5005/api/projects/${id}`)
@@ -46,6 +57,13 @@ function ProjectDetailsPage() {
         <Link to={"/projects"}>
             <button>Go back to Projects</button>
         </Link>
+
+
+        <Link to={`/projects/${id}/edit`}>
+        <button>Edit Project</button>
+        </Link>
+
+        <button onClick={deleteProject}>Delete</button>
     </div>
   )
 }

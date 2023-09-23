@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-function AddProject() {
+function AddProject(props) {
 
     const [title,setTitle] = useState('')
     const [description,setDescription] = useState('')
@@ -15,12 +15,15 @@ function AddProject() {
         axios.post('http://localhost:5005/api/projects',newProject)
         .then(()=>{
             alert("Project successfully Created")
-            navigate('/projects')
+            props.getProjects()
+            setTitle('')
+            setDescription('')
 
         })
     }
     return (
         <div className="AddProject">
+            
             <h3>Add Project</h3>
                         <form onSubmit={handleSubmit}>
 

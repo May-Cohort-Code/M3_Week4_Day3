@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage";     // <== IMPORT
 import ProjectsList from "./pages/ProjectsList";
 import ProjectDetailsPage from "./pages/ProjectDetailsPage";
 import AddProject from "./pages/AddProject";
+import EditProject from "./pages/EditProject";
  
 /* 
 Objective: Full CRUD with my react application
@@ -24,7 +25,8 @@ function App() {
         <Route path="/" element={ <HomePage /> } />
         <Route path='/projects' element={<ProjectsList/>}/>
         <Route path="/projects/:id" element={<ProjectDetailsPage></ProjectDetailsPage>}></Route>
-        <Route path="/projects/add" element={<AddProject></AddProject>}></Route>
+        {/* <Route path="/projects/add" element={<AddProject></AddProject>}></Route> */}
+        <Route path="/projects/:id/edit" element={<EditProject></EditProject>}></Route>
       </Routes>
       
     </div>
